@@ -93,7 +93,7 @@
 </footer>
 
 <script>
-const BASE = ''; // 同目录相对路径
+const BASE = './'; // 同目录相对路径
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
@@ -206,6 +206,7 @@ function route() {
     $('view-list').classList.add('active');
     showAlert('ok');
     window.scrollTo(0, 0);
+    if (typeof window._listLoaded === 'undefined') { loadList(); window._listLoaded = true; }
   }
 }
 
