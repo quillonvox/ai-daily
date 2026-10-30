@@ -211,7 +211,7 @@ function route() {
 }
 
 window.addEventListener('hashchange', route);
-route();
+if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', route); } else { route(); }
 </script>
 </body>
 </html>
