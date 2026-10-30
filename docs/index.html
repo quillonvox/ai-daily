@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI日报归档</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#0f1420;color:#e8ecf4;padding:16px;max-width:680px;margin:0 auto}
+h1{font-size:20px;text-align:center;margin:14px 0 4px}
+.sub{text-align:center;color:#8a93a6;font-size:12px;margin-bottom:16px}
+.card{background:#1a2233;border:1px solid #2a3550;border-radius:12px;padding:14px;margin-bottom:12px;cursor:pointer}
+.card:active{background:#223055}
+.date{color:#9fc3ff;font-size:13px;font-weight:600}
+.title{font-size:15px;margin:6px 0}
+.sum{color:#aab4c8;font-size:13px;line-height:1.6}
+#reader{display:none}
+.back{color:#9fc3ff;font-size:14px;margin-bottom:10px;cursor:pointer}
+.tag{display:inline-block;background:#243050;border-radius:6px;padding:2px 8px;font-size:11px;margin:4px 4px 0 0;color:#9fc3ff}
+a{color:#9fc3ff}
+</style>
+</head>
+<body>
+<div id="list">
+<h1>📰 AI日报归档</h1>
+<div class="sub">每天8点自动更新 · quillonvox</div>
+<div id="cards"></div>
+</div>
+<div id="reader">
+<div class="back" onclick="showList()">← 返回列表</div>
+<div id="content"></div>
+</div>
+<script>
+async function load(){
+  const r = await fetch('data/index.json');
+  const d = await r.json();
+  document.getElementById('cards').innerHTML = d.days.map(x =>
+    `<div class="card" onclick="openDay('${x.date}')">
+      <div class="date">${x.date} · ${x.count}条</div>
+      <div class="title">${x.title}</div>
+      <div class="sum">${x.summary||''}</div>
+    </div>`).join('');
+}
+async function openDay(date){
+  const r = await fetch(`data/${date}.json`);
+  const d = await r.json();
+  let h = `<div class="date">${d.date}</div><h1 style="font-size:17px;text-align:left">${d.title}</h1><div class="sum">${d.summary||''}</div>`;
+  for(const src of (d.sources||[])){
+    h += `<div class="tag">${src.name}</div>`;
+    for(const a of (src.articles||[])){
+      h += `<div class="card" style="cursor:default"><div class="title">${a.title}</div><div class="sum">${a.note||''}</div>${a.link?`<div style="margin-top:6px"><a href="${a.link}">原文链接</a></div>`:''}</div>`;
+    }
+  }
+  document.getElementById('content').innerHTML = h;
+  document.getElementById('list').style.display='none';
+  document.getElementById('reader').style.display='block';
+  window.scrollTo(0,0);
+}
+function showList(){document.getElementById('reader').style.display='none';document.getElementById('list').style.display='block';}
+load();
+</script>
+</body>
+</html>
