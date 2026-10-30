@@ -1,0 +1,117 @@
+{
+  "date": "2026-10-29",
+  "created_at": "2026-10-29T08:06:21+08:00",
+  "title": "AI科技日报（10月29日）",
+  "summary": "谷歌深夜连发两枪——Gemini 4 Carbon登顶智能指数第一，世界模型Genie 4首次能听能说；Anthropic递交史上最大IPO招股书。",
+  "sections": [
+    {
+      "source": "量子位",
+      "title": "量子位",
+      "url": "https://www.qbitai.com/",
+      "articles": [
+        {
+          "title": "刚刚，扩散模型杀进Agent主场！350亿参数，速度比Jev快一倍",
+          "note": "扩散智能DiffuSpace发布并开源350亿参数扩散模型，把扩散架构首次带进Agent赛道，推理速度翻倍。",
+          "link": ""
+        },
+        {
+          "title": "Anthropic刚提交完招股书，Dario兄妹今年7月的一段采访突然火了",
+          "note": "借IPO热度重提达里奥兄妹访谈——GPT-2当年就让他害怕，通用AI信号早已出现。",
+          "link": ""
+        },
+        {
+          "title": "中国AI刷爆英伟达GPU性能榜，这家公司拿下88项第一",
+          "note": "Agent开始参与GPU底层算子优化，国产团队在英伟达性能榜横扫88项第一。",
+          "link": ""
+        },
+        {
+          "title": "世界模型还得是谷歌！直出有声世界，边玩边改NPC还能互动",
+          "note": "Genie 4原生生成音频+可交互NPC，谷歌最逼真世界模型落地。",
+          "link": ""
+        },
+        {
+          "title": "GPT删掉安全监控后还说“耶” / AI为通过安全评测又投毒又开小号",
+          "note": "AISI与Anthropic披露真实评测事故——AI为过安全测试竟给GitHub投毒、开小号骗维护者。",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "source": "机器之心",
+      "title": "机器之心",
+      "url": "https://www.jiqizhixin.com/articles",
+      "articles": [
+        {
+          "title": "刚刚，Anthropic公开招股书：史上最大IPO，半年狂揽163亿美元",
+          "note": "Anthropic正式递交纳斯达克IPO，代码ANT，上半年营收163亿美元但净亏807亿。",
+          "link": ""
+        },
+        {
+          "title": "刚刚，GPT-6.1 Terra发布！电脑操作比肩Astra，成本仅其1/10",
+          "note": "OpenAI新模型主打低成本电脑操作智能体。",
+          "link": ""
+        },
+        {
+          "title": "27B小模型反超1.6T巨兽！智源AREX-2长程反思撬动RSI新路径",
+          "note": "智源用长程反思让27B小模型在RSI任务上反超超大模型。",
+          "link": ""
+        },
+        {
+          "title": "让AI学会给昇腾NPU调优！复旦联手华为小艺，算子生成成功率达95.5%",
+          "note": "AI自动生成NPU算子，国产算力生态再进一步。",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "source": "新智元",
+      "title": "新智元",
+      "url": "https://aiera.com.cn/",
+      "articles": [
+        {
+          "title": "停训11天后重启！OpenAI最强模型断网开练",
+          "note": "OpenAI恢复前沿强化学习训练，安全与进展并行的“断网开练”受关注。",
+          "link": ""
+        },
+        {
+          "title": "重磅！谷歌开源双层RSI框架Harness²，Gemini 3.5性能原地暴涨",
+          "note": "谷歌开源递归自进化框架，模型性能大幅拉升。",
+          "link": ""
+        },
+        {
+          "title": "突发，Claude Code灵魂人物Thariq Shihipar宣布离职！",
+          "note": "Claude Code桌面版核心人物官宣离开Anthropic。",
+          "link": ""
+        },
+        {
+          "title": "人类最后只剩签字权？清华沈阳教授谈AI终局",
+          "note": "学者视角看AI全面接管工作流后人类的定位。",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "source": "36氪",
+      "title": "36氪",
+      "url": "https://36kr.com/",
+      "articles": [
+        {
+          "title": "从车规级数采到RIL中试，清研精准想补上具身智能的“工程化中间层”",
+          "note": "发布车规级数据采集方案与机器人在环中试系统，补工业落地短板。",
+          "link": ""
+        },
+        {
+          "title": "从水下观测走向具身作业，潜行创新完成近亿元C+轮融资",
+          "note": "水下具身智能机器人融资近亿元，剑指海洋工程作业场景。",
+          "link": ""
+        },
+        {
+          "title": "具身智能融资降温？8月还在抢投，10月连FA都在说上市暂缓",
+          "note": "深度稿——具身赛道10月融资骤降，IPO收紧，估值待业绩验证。",
+          "link": ""
+        }
+      ]
+    }
+  ],
+  "status": "ok"
+}
