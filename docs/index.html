@@ -2,62 +2,215 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI日报归档</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0d1117">
+<title>AI 日报归档</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#0f1420;color:#e8ecf4;padding:16px;max-width:680px;margin:0 auto}
-h1{font-size:20px;text-align:center;margin:14px 0 4px}
-.sub{text-align:center;color:#8a93a6;font-size:12px;margin-bottom:16px}
-.card{background:#1a2233;border:1px solid #2a3550;border-radius:12px;padding:14px;margin-bottom:12px;cursor:pointer}
-.card:active{background:#223055}
-.date{color:#9fc3ff;font-size:13px;font-weight:600}
-.title{font-size:15px;margin:6px 0}
-.sum{color:#aab4c8;font-size:13px;line-height:1.6}
-#reader{display:none}
-.back{color:#9fc3ff;font-size:14px;margin-bottom:10px;cursor:pointer}
-.tag{display:inline-block;background:#243050;border-radius:6px;padding:2px 8px;font-size:11px;margin:4px 4px 0 0;color:#9fc3ff}
-a{color:#9fc3ff}
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 16px; line-height: 1.6; }
+  body { max-width: 720px; margin: 0 auto; padding: 16px; padding-bottom: 60px; }
+
+  /* 顶部告警条 */
+  .alert { display: none; padding: 10px 14px; border-radius: 8px; margin-bottom: 14px; font-size: 14px; font-weight: 500; }
+  .alert.partial { display: block; background: rgba(210, 153, 34, 0.15); color: #d29922; border: 1px solid rgba(210, 153, 34, 0.4); }
+  .alert.empty { display: block; background: rgba(248, 81, 73, 0.15); color: #f85149; border: 1px solid rgba(248, 81, 73, 0.4); }
+
+  /* 头部 */
+  header { padding: 20px 0 16px; border-bottom: 1px solid #21262d; margin-bottom: 20px; }
+  header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
+  header .meta { font-size: 12px; color: #8b949e; margin-top: 6px; }
+
+  /* 列表卡片 */
+  .day-card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 16px; margin-bottom: 12px; cursor: pointer; transition: border-color 0.15s; }
+  .day-card:active { border-color: #58a6ff; }
+  .day-card .date-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .day-card .date { font-size: 13px; color: #8b949e; font-variant-numeric: tabular-nums; }
+  .badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+  .badge.ok { background: rgba(63, 185, 80, 0.15); color: #3fb950; }
+  .badge.partial { background: rgba(210, 153, 34, 0.15); color: #d29922; }
+  .badge.empty { background: rgba(248, 81, 73, 0.15); color: #f85149; }
+  .day-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; color: #e6edf3; }
+  .day-card .summary { font-size: 14px; color: #8b949e; line-height: 1.5; }
+  .day-card .count { font-size: 12px; color: #6e7681; margin-top: 8px; }
+
+  /* 阅读页 */
+  .back-btn { display: inline-flex; align-items: center; gap: 6px; color: #58a6ff; font-size: 14px; cursor: pointer; padding: 8px 0; margin-bottom: 12px; background: none; border: none; }
+  .back-btn:active { opacity: 0.6; }
+
+  .article-header { padding: 8px 0 16px; border-bottom: 1px solid #21262d; margin-bottom: 20px; }
+  .article-header .date { font-size: 13px; color: #8b949e; margin-bottom: 6px; }
+  .article-header h2 { font-size: 20px; font-weight: 700; line-height: 1.3; margin-bottom: 10px; }
+  .article-header .summary { font-size: 14px; color: #c9d1d9; background: #161b22; padding: 12px 14px; border-radius: 8px; border-left: 3px solid #58a6ff; }
+
+  section.block { margin-bottom: 24px; }
+  section.block .sec-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  section.block .sec-tag { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 6px; background: rgba(88, 166, 255, 0.15); color: #58a6ff; }
+  section.block .sec-body { font-size: 13px; color: #8b949e; margin-bottom: 10px; }
+
+  .article-item { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 14px; margin-bottom: 10px; }
+  .article-item h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; line-height: 1.4; }
+  .article-item p { font-size: 14px; color: #c9d1d9; line-height: 1.6; }
+  .article-item a.link { display: inline-block; margin-top: 8px; font-size: 12px; color: #58a6ff; text-decoration: none; }
+  .article-item a.link:active { text-decoration: underline; }
+
+  /* 状态 */
+  .loading, .error, .empty-state { text-align: center; padding: 40px 20px; color: #8b949e; font-size: 14px; }
+  .error { color: #f85149; }
+
+  footer { text-align: center; padding: 30px 0 10px; font-size: 12px; color: #6e7681; }
+  footer a { color: #6e7681; }
+
+  /* 阅读页隐藏列表 */
+  .view { display: none; }
+  .view.active { display: block; }
 </style>
 </head>
 <body>
-<div id="list">
-<h1>📰 AI日报归档</h1>
-<div class="sub">每天8点自动更新 · quillonvox</div>
-<div id="cards"></div>
+
+<div id="alert" class="alert"></div>
+
+<!-- 列表视图 -->
+<div id="view-list" class="view active">
+  <header>
+    <h1>AI 日报归档</h1>
+    <div class="meta" id="updated-meta">加载中…</div>
+  </header>
+  <div id="list-container">
+    <div class="loading">正在拉取日报索引…</div>
+  </div>
 </div>
-<div id="reader">
-<div class="back" onclick="showList()">← 返回列表</div>
-<div id="content"></div>
+
+<!-- 阅读视图 -->
+<div id="view-post" class="view">
+  <button class="back-btn" onclick="goList()">← 返回列表</button>
+  <div id="post-container">
+    <div class="loading">加载中…</div>
+  </div>
 </div>
+
+<footer>
+  AI 日报归档 · 每日自动更新
+</footer>
+
 <script>
-async function load(){
-  const r = await fetch('data/index.json');
-  const d = await r.json();
-  document.getElementById('cards').innerHTML = d.days.map(x =>
-    `<div class="card" onclick="openDay('${x.date}')">
-      <div class="date">${x.date} · ${x.count}条</div>
-      <div class="title">${x.title}</div>
-      <div class="sum">${x.summary||''}</div>
-    </div>`).join('');
+const BASE = ''; // 同目录相对路径
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+function fmtDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
 }
-async function openDay(date){
-  const r = await fetch(`data/${date}.json`);
-  const d = await r.json();
-  let h = `<div class="date">${d.date}</div><h1 style="font-size:17px;text-align:left">${d.title}</h1><div class="sum">${d.summary||''}</div>`;
-  for(const src of (d.sources||[])){
-    h += `<div class="tag">${src.name}</div>`;
-    for(const a of (src.articles||[])){
-      h += `<div class="card" style="cursor:default"><div class="title">${a.title}</div><div class="sum">${a.note||''}</div>${a.link?`<div style="margin-top:6px"><a href="${a.link}">原文链接</a></div>`:''}</div>`;
-    }
+
+function statusBadge(s) {
+  if (s === 'partial') return '<span class="badge partial">部分失败</span>';
+  if (s === 'empty') return '<span class="badge empty">抓取为空</span>';
+  return '<span class="badge ok">正常</span>';
+}
+
+function showAlert(status) {
+  const el = $('alert');
+  if (status === 'partial') {
+    el.className = 'alert partial';
+    el.textContent = '⚠ 今日部分信源抓取失败，内容可能不完整';
+  } else if (status === 'empty') {
+    el.className = 'alert empty';
+    el.textContent = '✕ 今日抓取为空，请检查后端 cron';
+  } else {
+    el.className = 'alert';
+    el.textContent = '';
   }
-  document.getElementById('content').innerHTML = h;
-  document.getElementById('list').style.display='none';
-  document.getElementById('reader').style.display='block';
-  window.scrollTo(0,0);
 }
-function showList(){document.getElementById('reader').style.display='none';document.getElementById('list').style.display='block';}
-load();
+
+async function loadList() {
+  try {
+    const res = await fetch(BASE + 'data/index.json');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    $('updated-meta').textContent = '更新于 ' + fmtDate(data.updated);
+    if (!data.days || data.days.length === 0) {
+      $('list-container').innerHTML = '<div class="empty-state">还没有日报，等明早 8 点第一期上线</div>';
+      return;
+    }
+    const html = data.days.map(d => `
+      <div class="day-card" onclick="openPost('${esc(d.date)}')">
+        <div class="date-row">
+          <span class="date">${esc(d.date)}</span>
+          ${statusBadge(d.status)}
+        </div>
+        <h3>${esc(d.title) || ('AI 日报 ' + d.date)}</h3>
+        <div class="summary">${esc(d.summary || '')}</div>
+        <div class="count">${d.count || 0} 条</div>
+      </div>
+    `).join('');
+    $('list-container').innerHTML = html;
+  } catch (e) {
+    $('list-container').innerHTML = '<div class="error">索引加载失败：' + e.message + '<br>请确认 data/index.json 已推送</div>';
+  }
+}
+
+async function loadPost(date) {
+  try {
+    const res = await fetch(BASE + 'data/' + date + '.json');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const d = await res.json();
+    showAlert(d.status);
+
+    const sectionsHtml = (d.sections || []).map(sec => `
+      <section class="block">
+        <div class="sec-head">
+          <span class="sec-tag">${esc(sec.source || sec.title || '')}</span>
+        </div>
+        ${sec.body ? `<div class="sec-body">${esc(sec.body)}</div>` : ''}
+        ${(sec.articles || []).map(a => `
+          <div class="article-item">
+            <h4>${esc(a.title || '')}</h4>
+            ${a.note ? `<p>${esc(a.note)}</p>` : ''}
+            ${a.link ? `<a class="link" href="${a.link}" target="_blank" rel="noopener">原文 ↗</a>` : ''}
+          </div>
+        `).join('')}
+      </section>
+    `).join('');
+
+    $('post-container').innerHTML = `
+      <div class="article-header">
+        <div class="date">${d.date} · ${fmtDate(d.created_at)}</div>
+        <h2>${esc(d.title) || ('AI 日报 ' + d.date)}</h2>
+        ${d.summary ? `<div class="summary">${esc(d.summary)}</div>` : ''}
+      </div>
+      ${sectionsHtml || '<div class="empty-state">今日无分节内容</div>'}
+    `;
+  } catch (e) {
+    $('post-container').innerHTML = '<div class="error">日报加载失败：' + e.message + '</div>';
+  }
+}
+
+function openPost(date) {
+  location.hash = '#/' + date;
+}
+function goList() {
+  location.hash = '#/';
+}
+
+function route() {
+  const h = location.hash || '#/';
+  const m = h.match(/^#\/(\d{4}-\d{2}-\d{2})$/);
+  if (m) {
+    $('view-list').classList.remove('active');
+    $('view-post').classList.add('active');
+    showAlert('ok');
+    loadPost(m[1]);
+  } else {
+    $('view-post').classList.remove('active');
+    $('view-list').classList.add('active');
+    showAlert('ok');
+    window.scrollTo(0, 0);
+  }
+}
+
+window.addEventListener('hashchange', route);
+route();
 </script>
 </body>
 </html>
