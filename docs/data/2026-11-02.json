@@ -1,6 +1,6 @@
 {
   "date": "2026-11-02",
-  "title": "📰 AI科技日报（11月2日，覆盖11月1日内容）",
+  "title": "AI科技日报（11月2日，覆盖11月1日内容）",
   "summary": "DeepSeek开源下一代Agent底座架构持续刷屏，Anthropic与OpenAI围绕订阅额度、Agent权限密集出招，“AI烧钱叙事”开始被资本质疑。",
   "status": "ok",
   "created_at": "2026-11-02T08:06:00+08:00",
@@ -10,22 +10,22 @@
       "articles": [
         {
           "title": "刚刚，DeepSeek公布下一代agent harness理念",
-          "note": "",
+          "note": "DeepSeek公开Agent运行框架设计思路，与此前开源的Agent底座架构呼应，被视作国产Agent基建的关键一步。（jiqizhixin.com/articles）",
           "link": ""
         },
         {
           "title": "史上首次！谷歌TPU在轨运行Gemma 4",
-          "note": "",
+          "note": "谷歌把TPU送入太空轨道跑大模型，“太空数据中心”从概念走向验证。",
           "link": ""
         },
         {
           "title": "刚刚，Claude每月200美元套餐取消5小时限制",
-          "note": "",
+          "note": "Anthropic将Max 20x升级为Ultra并取消5小时限额，算力竞争白热化的直接体现。",
           "link": ""
         },
         {
           "title": "英特尔显卡驱动被开源解锁，RTX 4090吞吐翻倍",
-          "note": "",
+          "note": "社区不改官方驱动解锁隐藏算力，GPU效率压榨进入新阶段。",
           "link": ""
         }
       ]
@@ -35,22 +35,22 @@
       "articles": [
         {
           "title": "DeepSeek重磅开源：Agent底座架构！",
-          "note": "",
+          "note": "10月31日深夜开源，业界普遍认为是冲着\"Agent操作系统\"去的。链接：qbitai.com/2026/10/506904.html",
           "link": ""
         },
         {
           "title": "Claude紧急叫停！暗改Harness禁止逆向游戏",
-          "note": "",
+          "note": "Anthropic悄悄改规则禁止用Claude逆向他人游戏，开发者生态边界之争。",
           "link": ""
         },
         {
           "title": "清华姚期智团队新作：代数世界模型，让AI像牛顿一样思考",
-          "note": "",
+          "note": "用代数结构给世界模型“上数学”，路径区别于纯数据驱动。链接：qbitai.com/2026/11/507031.html",
           "link": ""
         },
         {
           "title": "三年前布局，今年爆火丨西湖大学成立新中心",
-          "note": "",
+          "note": "世界模型方向再添重量级学术力量。链接：qbitai.com/2026/11/507076.html",
           "link": ""
         }
       ]
@@ -60,17 +60,17 @@
       "articles": [
         {
           "title": "DeepSeek刚发的下一代Agent，竟被这家硅谷团队提前半年实现了？",
-          "note": "",
+          "note": "中美团队在Agent框架上“撞题”，竞争节奏快到以月计。",
           "link": ""
         },
         {
           "title": "数亿美元做数学！奥特曼：OpenAI还有发现没公开",
-          "note": "",
+          "note": "Altman暗示OpenAI在数学领域还有未公开成果，吊足胃口。",
           "link": ""
         },
         {
           "title": "GPT-6「看不懂 3D」实锤！250道题只拿0.53分",
-          "note": "",
+          "note": "新基准揭露前沿模型空间理解短板，Claude也没及格。",
           "link": ""
         }
       ]
@@ -80,17 +80,17 @@
       "articles": [
         {
           "title": "AI“烧钱叙事”遇冷？OpenAI融资目标砍掉100亿！",
-          "note": "",
+          "note": "36kr.com/p/4050660776317825 — 资本对AI巨额融资开始保守。",
           "link": ""
         },
         {
           "title": "2800万用户，养不活一个AI陪伴应用",
-          "note": "",
+          "note": "36kr.com/p/4051001127687043 — AI陪伴赛道的商业化困境深度复盘。",
           "link": ""
         },
         {
           "title": "史上首次！谷歌TPU在轨运行Gemma 4",
-          "note": "",
+          "note": "36kr.com/p/4049789434156166 — 同题报道，细节更产业向。",
           "link": ""
         }
       ]
