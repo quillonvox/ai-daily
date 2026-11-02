@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>周公解梦 · 云梦斋</title>
+<style>
+  :root{
+    --ink:#2b2320; --ink-light:#5a4f48; --paper:#f5efe4; --paper-deep:#efe6d5;
+    --cinnabar:#b03a2e; --cinnabar-deep:#8e2a20; --gold:#c9a227; --gold-soft:#d8bc6a;
+    --night:#1d2733; --night-deep:#141b25; --moon:#f4ecd8;
+    --card:#fdf9f0; --border:#d9cdb8; --shadow:rgba(43,35,32,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    font-family:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+    background:linear-gradient(160deg,#f7f1e5 0%,#efe6d3 55%,#e8dcc5 100%);
+    color:var(--ink); min-height:100vh; overflow-x:hidden;
+  }
+  /* ===== 云纹背景装饰 ===== */
+  .bg-deco{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5}
+  .cloud{position:absolute;opacity:.35;animation:drift 26s linear infinite}
+  .cloud svg{display:block}
+  @keyframes drift{from{transform:translateX(-15vw)}to{transform:translateX(115vw)}}
+
+  /* ===== 蝴蝶 ===== */
+  .butterfly{position:absolute;width:34px;opacity:.85;animation:butterflyPath 18s ease-in-out infinite;z-index:1;pointer-events:none;filter:drop-shadow(0 2px 3px rgba(0,0,0,.18))}
+  .butterfly svg{animation:flap 0.5s ease-in-out infinite alternate;transform-origin:center}
+  @keyframes flap{from{transform:scaleX(1)}to{transform:scaleX(0.55)}}
+  @keyframes butterflyPath{
+    0%{transform:translate(0,0) rotate(8deg)}
+    25%{transform:translate(14vw,-6vh) rotate(-6deg)}
+    50%{transform:translate(28vw,4vh) rotate(10deg)}
+    75%{transform:translate(42vw,-4vh) rotate(-8deg)}
+    100%{transform:translate(56vw,0) rotate(6deg)}
+  }
+
+  .app{position:relative;z-index:2;max-width:640px;margin:0 auto;padding:20px 16px 40px;min-height:100vh;display:flex;flex-direction:column}
+  .view{display:none;flex-direction:column;flex:1}
+  .view.active{display:flex}
+
+  /* ===== 首页 ===== */
+  .hero{ text-align:center; padding:34px 0 10px; position:relative }
+  .seal{
+    width:84px;height:84px;margin:0 auto 16px;border-radius:14px;
+    background:linear-gradient(145deg,var(--cinnabar),var(--cinnabar-deep));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 18px rgba(142,42,32,.35), inset 0 1px 0 rgba(255,255,255,.25);
+    position:relative;
+  }
+  .seal::after{content:"";position:absolute;inset:5px;border:1.5px solid rgba(255,235,210,.55);border-radius:10px}
+  .seal span{font-size:38px;color:#fdf3df;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.3)}
+  .hero h1{font-size:34px;letter-spacing:8px;font-weight:700;color:var(--ink)}
+  .hero .sub{margin-top:8px;font-size:14px;color:var(--ink-light);letter-spacing:3px}
+  .hero .divider{width:180px;height:14px;margin:14px auto 0;opacity:.6}
+
+  /* 老头 */
+  .master{margin:6px auto 0;width:170px;animation:floaty 4s ease-in-out infinite}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+  .master-bubble{
+    margin:10px auto 0;max-width:300px;background:var(--card);border:1px solid var(--border);
+    border-radius:14px;padding:10px 14px;font-size:13.5px;color:var(--ink-light);line-height:1.7;
+    box-shadow:0 3px 10px var(--shadow);position:relative
+  }
+  .master-bubble::before{content:"";position:absolute;top:-7px;left:50%;margin-left:-7px;width:12px;height:12px;background:var(--card);border-left:1px solid var(--border);border-top:1px solid var(--border);transform:rotate(45deg)}
+
+  .menu{margin-top:26px;display:flex;flex-direction:column;gap:14px}
+  .menu-btn{
+    position:relative;display:flex;align-items:center;gap:14px;
+    background:var(--card);border:1px solid var(--border);border-radius:16px;
+    padding:18px 20px;cursor:pointer;transition:.22s;text-align:left;
+    box-shadow:0 3px 12px var(--shadow);overflow:hidden
+  }
+  .menu-btn:active{transform:scale(.97)}
+  .menu-btn .icon{width:52px;height:52px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px}
+  .menu-btn.primary .icon{background:linear-gradient(145deg,#c04a3c,#96291f)}
+  .menu-btn.secondary .icon{background:linear-gradient(145deg,#3a4d63,#253549)}
+  .menu-btn .txt b{display:block;font-size:18px;letter-spacing:2px;margin-bottom:3px}
+  .menu-btn .txt i{font-style:normal;font-size:12.5px;color:var(--ink-light)}
+  .menu-btn .arrow{margin-left:auto;color:var(--gold);font-size:20px}
+  .menu-btn.primary{border-color:#c9a08f}
+  .menu-btn.primary::after{content:"";position:absolute;right:-24px;top:-24px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(201,162,39,.18),transparent 70%)}
+  .footer-note{text-align:center;margin-top:auto;padding-top:28px;font-size:11.5px;color:#a3968a;letter-spacing:1px}
+
+  /* ===== 通用顶栏 ===== */
+  .topbar{display:flex;align-items:center;gap:10px;padding:6px 0 14px}
+  .back{
+    width:38px;height:38px;border-radius:11px;border:1px solid var(--border);background:var(--card);
+    font-size:17px;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s
+  }
+  .back:active{transform:scale(.92)}
+  .topbar h2{font-size:20px;letter-spacing:3px}
+  .topbar .spacer{flex:1}
+
+  /* ===== 解梦页 ===== */
+  .chat-wrap{flex:1;display:flex;flex-direction:column;min-height:0}
+  .chat{
+    flex:1;overflow-y:auto;background:var(--card);border:1px solid var(--border);border-radius:16px;
+    padding:16px 14px;display:flex;flex-direction:column;gap:14px;box-shadow:0 3px 12px var(--shadow);
+    min-height:44vh;max-height:60vh
+  }
+  .msg{max-width:86%;line-height:1.75;font-size:14.5px;position:relative;white-space:pre-wrap;word-break:break-word}
+  .msg.user{align-self:flex-end;background:linear-gradient(145deg,#3a4d63,#2b3b4e);color:#f2ede1;padding:11px 14px;border-radius:14px 14px 3px 14px}
+  .msg.ai{align-self:flex-start;background:#f8f2e4;border:1px solid #e4d8c0;padding:12px 15px;border-radius:14px 14px 14px 3px;color:var(--ink)}
+  .msg.ai b{color:var(--cinnabar)}
+  .msg.ai .sec{display:block;margin-top:8px;padding-top:8px;border-top:1px dashed #d8c9a8;font-size:13.5px}
+  .typing{display:inline-flex;gap:5px;align-items:center;padding:6px 2px}
+  .typing i{width:7px;height:7px;border-radius:50%;background:#b3a58c;animation:blink 1.2s infinite}
+  .typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+
+  /* 输入区：大输入框 */
+  .input-zone{margin-top:14px;background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:12px;box-shadow:0 3px 12px var(--shadow);transition:.25s}
+  .input-zone:focus-within{border-color:var(--gold);box-shadow:0 4px 16px rgba(201,162,39,.22)}
+  #dreamInput{
+    width:100%;min-height:110px;resize:vertical;border:none;outline:none;background:transparent;
+    font-family:inherit;font-size:15px;line-height:1.8;color:var(--ink)
+  }
+  #dreamInput::placeholder{color:#b6a992}
+  .input-actions{display:flex;gap:10px;align-items:center;margin-top:8px}
+  .btn{
+    border:none;border-radius:12px;padding:11px 26px;font-family:inherit;font-size:15px;letter-spacing:2px;
+    cursor:pointer;transition:.2s;color:#fdf3df
+  }
+  .btn:active{transform:scale(.95)}
+  .btn-main{background:linear-gradient(145deg,#c04a3c,#96291f);box-shadow:0 3px 10px rgba(142,42,32,.3)}
+  .btn-save{background:linear-gradient(145deg,#3a6b52,#27523d)}
+  .btn[disabled]{opacity:.5;pointer-events:none}
+  .hint{text-align:center;font-size:11.5px;color:#a3968a;margin-top:10px}
+
+  /* ===== toast ===== */
+  .toast{
+    position:fixed;left:50%;bottom:12vh;transform:translateX(-50%) translateY(20px);
+    background:rgba(35,28,24,.92);color:#f5efe0;padding:11px 22px;border-radius:24px;font-size:14px;
+    letter-spacing:1px;opacity:0;transition:.3s;z-index:99;pointer-events:none;max-width:80vw;text-align:center
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* ===== 记录页 ===== */
+  .identity-box{
+    background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 18px;
+    box-shadow:0 3px 12px var(--shadow);text-align:center
+  }
+  .identity-box p{font-size:14px;color:var(--ink-light);line-height:1.8;margin-bottom:14px}
+  #identityInput{
+    width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;font-family:inherit;
+    font-size:15px;outline:none;text-align:center;background:#fbf6ea;transition:.2s
+  }
+  #identityInput:focus{border-color:var(--gold);background:#fff}
+  .identity-box .btn{width:100%;margin-top:14px}
+  .records{margin-top:16px;display:flex;flex-direction:column;gap:12px}
+  .record{
+    background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;
+    box-shadow:0 2px 8px var(--shadow)
+  }
+  .record .r-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+  .record .r-date{font-size:12px;color:var(--gold);letter-spacing:1px}
+  .record .r-del{font-size:12px;color:#b06a5c;background:none;border:none;cursor:pointer;font-family:inherit;padding:2px 6px;border-radius:6px}
+  .record .r-del:active{background:#f3e4dc}
+  .record .r-dream{font-size:14.5px;line-height:1.7;cursor:pointer;white-space:pre-wrap}
+  .record .r-dream::before{content:"梦境｜";color:var(--cinnabar);font-weight:700;font-size:13px}
+  .record .r-result{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);font-size:13px;color:var(--ink-light);line-height:1.8;white-space:pre-wrap}
+  .record.open .r-result{display:block}
+  .empty{text-align:center;padding:50px 0;color:#a3968a;font-size:14px;letter-spacing:2px}
+  .empty .e-icon{font-size:44px;opacity:.5;margin-bottom:12px}
+
+  @media (max-width:420px){
+    .hero h1{font-size:29px}
+    .app{padding:16px 13px 34px}
+    .chat{min-height:38vh;max-height:52vh}
+    #dreamInput{min-height:96px}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-deco">
+  <div class="cloud" style="top:8%;animation-duration:34s"><svg width="150" height="40" viewBox="0 0 150 40"><path d="M10 30 Q25 12 45 22 Q55 6 78 14 Q95 4 112 16 Q132 12 140 28" fill="none" stroke="#b89a6a" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+  <div class="cloud" style="top:26%;animation-duration:48s;animation-delay:-20s"><svg width="110" height="30" viewBox="0 0 150 40"><path d="M10 30 Q25 12 45 22 Q55 6 78 14 Q95 4 112 16 Q132 12 140 28" fill="none" stroke="#b89a6a" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <div class="cloud" style="top:64%;animation-duration:42s;animation-delay:-10s"><svg width="130" height="34" viewBox="0 0 150 40"><path d="M10 30 Q25 12 45 22 Q55 6 78 14 Q95 4 112 16 Q132 12 140 28" fill="none" stroke="#b89a6a" stroke-width="2" stroke-linecap="round"/></svg></div>
+</div>
+
+<div class="app">
+
+  <!-- ============ 首页 ============ -->
+  <div class="view active" id="view-home">
+    <div class="hero">
+      <div class="seal"><span>夢</span></div>
+      <h1>云梦斋</h1>
+      <div class="sub">周公解梦 · 古法新解</div>
+      <div class="divider">
+        <svg width="180" height="14" viewBox="0 0 180 14"><line x1="0" y1="7" x2="70" y2="7" stroke="#c9a227" stroke-width="1"/><circle cx="90" cy="7" r="4" fill="none" stroke="#c9a227" stroke-width="1.5"/><circle cx="90" cy="7" r="1.2" fill="#c9a227"/><line x1="110" y1="7" x2="180" y2="7" stroke="#c9a227" stroke-width="1"/></svg>
+      </div>
+    </div>
+
+    <!-- 周公老头 -->
+    <div class="master">
+      <svg viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="60" cy="122" rx="34" ry="5" fill="rgba(90,70,50,.15)"/>
+        <path d="M32 118 Q30 84 60 82 Q90 84 88 118 Z" fill="#3a4d63"/>
+        <path d="M40 86 L36 70 L84 70 L80 86 Q60 94 40 86Z" fill="#f0e6d2"/>
+        <path d="M34 74 Q60 64 86 74 L86 80 Q60 72 34 80 Z" fill="#b03a2e"/>
+        <circle cx="60" cy="46" r="22" fill="#f6ead6"/>
+        <path d="M38 44 Q36 20 60 18 Q84 20 82 44 Q84 30 74 26 Q60 22 46 26 Q38 30 38 44Z" fill="#e8e2d4"/>
+        <path d="M40 24 Q60 6 80 24 Q82 30 78 32 Q60 16 42 32 Q38 30 40 24Z" fill="#3a4d63"/>
+        <circle cx="52" cy="47" r="2.2" fill="#2b2320"/>
+        <circle cx="68" cy="47" r="2.2" fill="#2b2320"/>
+        <path d="M54 58 Q60 62 66 58" fill="none" stroke="#8a6a4a" stroke-width="2" stroke-linecap="round"/>
+        <path d="M44 52 L34 50" stroke="#c8bfae" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M44 56 L35 57" stroke="#c8bfae" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M76 52 L86 50" stroke="#c8bfae" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M76 56 L85 57" stroke="#c8bfae" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M30 40 Q26 34 32 28" fill="none" stroke="#8a6a4a" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="32" cy="26" r="3.4" fill="#c9a227"/>
+      </svg>
+    </div>
+    <div class="master-bubble" id="masterSays">夜有所梦，日有所思。把梦讲给老朽听听？</div>
+
+    <div class="menu">
+      <button class="menu-btn primary" onclick="go('dream')">
+        <div class="icon">🌙</div>
+        <div class="txt"><b>开始解梦</b><i>把梦告诉我，为你拆解玄机</i></div>
+        <div class="arrow">➤</div>
+      </button>
+      <button class="menu-btn secondary" onclick="go('records')">
+        <div class="icon">📜</div>
+        <div class="txt"><b>我的梦境记录</b><i>凭标识查看你存下的每个梦</i></div>
+        <div class="arrow">➤</div>
+      </button>
+    </div>
+    <div class="footer-note">梦境仅供参考娱乐 · 保持理性看待</div>
+  </div>
+
+  <!-- ============ 解梦页 ============ -->
+  <div class="view" id="view-dream">
+    <div class="topbar">
+      <button class="back" onclick="go('home')">←</button>
+      <h2>解梦</h2><div class="spacer"></div>
+      <span style="font-size:12px;color:#a3968a" id="idBadge"></span>
+    </div>
+    <div class="chat-wrap">
+      <div class="chat" id="chatBox">
+        <div class="msg ai">施主莫慌，把梦原原本本讲来——梦里的<b>人物、事物、情绪</b>越具体，解得越准。</div>
+      </div>
+      <div class="input-zone">
+        <textarea id="dreamInput" placeholder="描述你的梦境……（点击即可展开，可多行输入）"></textarea>
+        <div class="input-actions">
+          <button class="btn btn-main" id="sendBtn" onclick="sendDream()">解 梦</button>
+          <button class="btn btn-save" id="saveBtn" onclick="saveDream()" disabled>存 梦</button>
+        </div>
+      </div>
+      <div class="hint">凭"标识"存梦与查梦 · 同一标识，处处可取</div>
+    </div>
+  </div>
+
+  <!-- ============ 记录页 ============ -->
+  <div class="view" id="view-records">
+    <div class="topbar">
+      <button class="back" onclick="go('home')">←</button>
+      <h2>梦境记录</h2>
+    </div>
+    <div class="identity-box" id="idGate">
+      <p>☁ 云端记录：<b>同一标识，任何设备都能打开同一份梦境库</b>。<br>标识随取随用——字母、数字、符号皆可，家人各有各的标识，互不相扰。</p>
+      <input id="identityInput" placeholder="输入你的梦境标识（如：云梦居士1990）" maxlength="40">
+      <button class="btn btn-main" onclick="openRecords()">查看记录</button>
+    </div>
+    <div class="records" id="recordList" style="display:none"></div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ 云端存储：JSONBin（免费公开云数据库，跨设备共享） ============
+   使用前在下方填入你的 JSONBin 信息（jsonbin.io 免费注册获取）：
+   - BIN_ID: 存储桶地址
+   - X_MASTER_KEY: 账户密钥
+   未填写时自动降级为本机 localStorage（仅当前设备可见）。
+======================================================================== */
+const BIN_ID    = "";   // ← 填这里，例如 "6729ab..."
+const MASTER_KEY= "";   // ← 填这里，例如 "$2a$10..."
+const BIN_URL   = BIN_ID ? `https://api.jsonbin.io/v3/b/${BIN_ID}` : null;
+
+const CLOUD_ON  = !!(BIN_ID && MASTER_KEY);
+const LS_KEY    = "dream_records_v2";
+
+let currentIdentity = localStorage.getItem("dream_identity") || "";
+let lastResultText  = "";
+let lastDreamText   = "";
+let history         = [];   // 当前会话多轮上下文
+
+function go(v){
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  if(v==='dream'){
+    const b=document.getElementById('idBadge');
+    b.textContent = currentIdentity ? ('标识：'+currentIdentity) : '未设标识·可先解梦';
+  }
+  if(v==='records' && currentIdentity) openRecords();
+  window.scrollTo(0,0);
+}
+
+function toast(msg, ok=true){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.style.background = ok? 'rgba(35,28,24,.92)' : 'rgba(142,42,32,.94)';
+  t.classList.add('show');
+  clearTimeout(t._tm); t._tm=setTimeout(()=>t.classList.remove('show'),2400);
+}
+
+/* ---------- 存储层（云端/本地双模） ---------- */
+async function loadAll(){
+  if(CLOUD_ON){
+    try{
+      const r = await fetch(BIN_URL+"/latest",{headers:{"X-Master-Key":MASTER_KEY}});
+      if(r.ok){ const j = await r.json(); return j.record || {}; }
+    }catch(e){}
+    return {};
+  }
+  try{ return JSON.parse(localStorage.getItem(LS_KEY)||"{}"); }catch(e){ return {}; }
+}
+async function saveAll(db){
+  if(CLOUD_ON){
+    const r = await fetch(BIN_URL,{method:"PUT",headers:{"Content-Type":"application/json","X-Master-Key":MASTER_KEY},body:JSON.stringify(db)});
+    return r.ok;
+  }
+  localStorage.setItem(LS_KEY, JSON.stringify(db)); return true;
+}
+
+/* ---------- 周公闲话 ---------- */
+const IDLE_TALKS=["梦由心生，境随念转。","老朽夜观星象，正候着你的梦呢。","日有所思，夜有所梦——说说看？","梦是心里的信，老朽替你拆信。","庄周梦蝶，蝶梦庄周，你说哪个是真？"];
+document.getElementById('masterSays').textContent = IDLE_TALKS[Math.floor(Math.random()*IDLE_TALKS.length)];
+
+/* ---------- 解梦 ---------- */
+const chatBox = document.getElementById('chatBox');
+const dreamInput = document.getElementById('dreamInput');
+
+function addMsg(cls, html){
+  const d=document.createElement('div');
+  d.className='msg '+cls; d.innerHTML=html;
+  chatBox.appendChild(d); chatBox.scrollTop=chatBox.scrollHeight;
+  return d;
+}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function fmtAI(text){
+  let t = esc(text);
+  t = t.replace(/【(.+?)】/g,'<span class="sec"><b>【$1】</b>');
+  t = t.replace(/\n/g,'<br>');
+  return t;
+}
+
+/* ---------- DeepSeek API（key 存本机 localStorage，绝不写进代码） ---------- */
+const DS_URL = "https://api.deepseek.com/chat/completions";
+const DS_KEY_NAME = "deepseek_api_key";
+function getDSKey(){ return localStorage.getItem(DS_KEY_NAME) || ""; }
+
+function askKey(then){
+  const layer = document.createElement('div');
+  layer.style.cssText='position:fixed;inset:0;background:rgba(30,24,20,.55);z-index:70;display:flex;align-items:center;justify-content:center;padding:20px';
+  layer.innerHTML = `<div style="background:var(--card);border-radius:18px;padding:24px 20px;max-width:340px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,.3);text-align:center">
+    <div style="font-size:34px;margin-bottom:8px">🔑</div>
+    <div style="font-size:17px;letter-spacing:2px;margin-bottom:8px">接通天机 · 填入 DeepSeek Key</div>
+    <div style="font-size:12.5px;color:var(--ink-light);line-height:1.7;margin-bottom:14px">Key 只存在这台设备的浏览器里，不经过任何第三方。<br>到 platform.deepseek.com 左侧"API keys"创建，sk- 开头。</div>
+    <input id="dsKeyInput" type="password" style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;font-family:inherit;font-size:14px;text-align:center;outline:none;background:#fbf6ea" placeholder="sk-..." autocomplete="off">
+    <div style="display:flex;gap:10px;margin-top:14px">
+      <button id="dsKeyCancel" style="flex:1;padding:11px;border-radius:12px;border:1px solid var(--border);background:#f3ecdc;font-family:inherit;font-size:14px;cursor:pointer">跳过</button>
+      <button id="dsKeyOk" style="flex:1;padding:11px;border-radius:12px;border:none;background:linear-gradient(145deg,#c04a3c,#96291f);color:#fdf3df;font-family:inherit;font-size:14px;letter-spacing:2px;cursor:pointer">确 定</button>
+    </div></div>`;
+  document.body.appendChild(layer);
+  layer.querySelector('#dsKeyCancel').onclick = ()=>layer.remove();
+  layer.querySelector('#dsKeyOk').onclick = ()=>{
+    const v = layer.querySelector('#dsKeyInput').value.trim();
+    if(!v){ layer.remove(); return; }
+    localStorage.setItem(DS_KEY_NAME, v);
+    layer.remove(); toast("✓ 天机已接通"); then && then();
+  };
+}
+
+const DREAM_SYSTEM = "你是「云梦斋」的解梦先生周公，语气古雅亲切。每次解梦固定三段，用【传统解梦】【心理映照】【今日提示】开头分节，每段不超过60字，总字数180字以内。梦境凶险时温和提醒'梦境仅供参考'。";
+
+async function callDeepseek(messages){
+  const key = getDSKey();
+  if(!key){ askKey(()=>toast("Key已存，重新点「解梦」即可")); throw new Error("no-key"); }
+  const res = await fetch(DS_URL,{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},
+    body: JSON.stringify({ model:"deepseek-chat", messages, max_tokens:500, temperature:0.8 })
+  });
+  if(!res.ok){
+    if(res.status===401){ localStorage.removeItem(DS_KEY_NAME); toast("Key无效，请重新填入", false); askKey(); }
+    throw new Error("http-"+res.status);
+  }
+  const data = await res.json();
+  return data.choices[0].message.content;
+}
+
+async function sendDream(){
+  const text = dreamInput.value.trim();
+  if(!text){ toast("梦还没讲呢", false); return; }
+  addMsg('user', esc(text));
+  history.push({role:"user", content:text});
+  dreamInput.value=''; dreamInput.style.height='auto';
+  lastDreamText = text;
+
+  const typing = addMsg('ai','<span class="typing"><i></i><i></i><i></i></span>');
+  document.getElementById('sendBtn').disabled=true;
+
+  try{
+    const reply = await callDeepseek([
+      {role:"system", content: DREAM_SYSTEM},
+      ...history
+    ]);
+    typing.innerHTML = fmtAI(reply);
+    history.push({role:"assistant", content:reply});
+    lastResultText = reply;
+    document.getElementById('saveBtn').disabled=false;
+  }catch(e){
+    typing.innerHTML = "⵰ 天机受阻——网络或服务暂时不便，稍候再试一次。";
+    toast("解梦失败，请重试", false);
+  }
+  document.getElementById('sendBtn').disabled=false;
+}
+
+/* 保存：需要标识时弹自定义输入层（不用 prompt，更稳更好看） */
+function askIdentity(then){
+  let layer = document.getElementById('idLayer');
+  if(!layer){
+    layer = document.createElement('div');
+    layer.id='idLayer';
+    layer.style.cssText='position:fixed;inset:0;background:rgba(30,24,20,.55);z-index:60;display:flex;align-items:center;justify-content:center;padding:20px';
+    layer.innerHTML = `<div style="background:var(--card);border-radius:18px;padding:24px 20px;max-width:340px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,.3);text-align:center">
+      <div style="font-size:34px;margin-bottom:8px">🗝️</div>
+      <div style="font-size:17px;letter-spacing:2px;margin-bottom:8px">给梦境库起个标识</div>
+      <div style="font-size:12.5px;color:var(--ink-light);line-height:1.7;margin-bottom:14px">字母、数字、符号都行。同一标识任何设备打开都是同一份梦境库，家人各用各的，互不相扰。</div>
+      <input id="idLayerInput" style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;font-family:inherit;font-size:15px;text-align:center;outline:none;background:#fbf6ea" placeholder="如：云梦居士1990" maxlength="40">
+      <div style="display:flex;gap:10px;margin-top:14px">
+        <button id="idLayerCancel" style="flex:1;padding:11px;border-radius:12px;border:1px solid var(--border);background:#f3ecdc;font-family:inherit;font-size:14px;cursor:pointer">取消</button>
+        <button id="idLayerOk" style="flex:1;padding:11px;border-radius:12px;border:none;background:linear-gradient(145deg,#c04a3c,#96291f);color:#fdf3df;font-family:inherit;font-size:14px;letter-spacing:2px;cursor:pointer">确 定</button>
+      </div></div>`;
+    document.body.appendChild(layer);
+    layer.querySelector('#idLayerCancel').onclick = ()=>layer.remove();
+    layer.querySelector('#idLayerOk').onclick = ()=>{
+      const v = layer.querySelector('#idLayerInput').value.trim();
+      if(!v){ toast("标识不能为空", false); return; }
+      currentIdentity = v; localStorage.setItem('dream_identity', v);
+      layer.remove(); then();
+    };
+    layer.querySelector('#idLayerInput').addEventListener('keydown', e=>{ if(e.key==='Enter') layer.querySelector('#idLayerOk').click(); });
+    setTimeout(()=>layer.querySelector('#idLayerInput').focus(), 50);
+  }
+}
+
+async function saveDream(){
+  if(!currentIdentity){ askIdentity(()=>doSave()); return; }
+  doSave();
+}
+async function doSave(){
+  const db = await loadAll();
+  (db[currentIdentity] = db[currentIdentity] || []).push({
+    dream: lastDreamText,
+    result: lastResultText,
+    time: new Date().toLocaleString('zh-CN',{hour12:false})
+  });
+  const ok = await saveAll(db);
+  toast(ok? "✓ 梦已存入「"+currentIdentity+"」的梦境库" : "✗ 保存失败，请重试", ok);
+}
+
+/* ---------- 记录页 ---------- */
+async function openRecords(){
+  const id = document.getElementById('identityInput').value.trim();
+  if(!id){ toast("先输入标识", false); return; }
+  currentIdentity = id;
+  localStorage.setItem("dream_identity", id);
+  const db = await loadAll();
+  const list = db[id] || [];
+  document.getElementById('idGate').style.display='none';
+  const box = document.getElementById('recordList');
+  box.style.display='flex';
+  if(!list.length){ box.innerHTML = '<div class="empty"><div class="e-icon">🦋</div>这个标识下还没有梦</div>'; return; }
+  box.innerHTML = list.map((r,i)=>`
+    <div class="record">
+      <div class="r-head">
+        <span class="r-date">${esc(r.time)}</span>
+        <button class="r-del" onclick="delDream(${i})">删除</button>
+      </div>
+      <div class="r-dream" onclick="this.parentElement.classList.toggle('open')">${esc(r.dream)}</div>
+      <div class="r-result">${fmtAI(r.result)}</div>
+    </div>`).join('');
+}
+async function delDream(i){
+  if(!confirm("删除这条梦境记录？")) return;
+  const db = await loadAll();
+  (db[currentIdentity]||[]).splice(i,1);
+  await saveAll(db);
+  openRecords(); toast("已删除");
+}
+
+/* 输入框自动长高 */
+dreamInput.addEventListener('input', ()=>{ dreamInput.style.height='auto'; dreamInput.style.height=Math.min(dreamInput.scrollHeight,240)+'px'; });
+dreamInput.addEventListener('keydown', e=>{ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); sendDream(); } });
+document.getElementById('identityInput').addEventListener('keydown', e=>{ if(e.key==='Enter') openRecords(); });
+
+/* 预填标识 */
+if(currentIdentity) document.getElementById('identityInput').value = currentIdentity;
+
+/* 蝴蝶点缀 */
+function spawnButterflies(){
+  const svg = '<svg viewBox="0 0 34 26"><path d="M16 13 Q6 2 2 8 Q0 14 15 14Z" fill="#c9a227" opacity=".9"/><path d="M18 13 Q28 2 32 8 Q34 14 19 14Z" fill="#b03a2e" opacity=".85"/><path d="M16 14 Q8 22 4 20 Q4 14 16 13Z" fill="#c9a227" opacity=".7"/><path d="M18 14 Q26 22 30 20 Q30 14 18 13Z" fill="#b03a2e" opacity=".65"/><rect x="16.4" y="8" width="1.4" height="10" rx="0.7" fill="#5a4f48"/></svg>';
+  for(let i=0;i<3;i++){
+    const b=document.createElement('div');
+    b.className='butterfly'; b.innerHTML=svg;
+    b.style.top = (18+Math.random()*50)+'vh';
+    b.style.left = '-6vw';
+    b.style.animationDuration = (14+Math.random()*12)+'s';
+    b.style.animationDelay = (-Math.random()*20)+'s';
+    document.querySelector('.bg-deco').appendChild(b);
+  }
+}
+spawnButterflies();
+</script>
+</body>
+</html>
