@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-30",
+  "title": "📰 AI科技日报（10月29日）",
+  "summary": "AI科技日报",
+  "status": "ok",
+  "created_at": "2026-10-30T08:06:00+08:00",
+  "sections": [
+    {
+      "source": "量子位",
+      "articles": [
+        {
+          "title": "刚刚，Gemini 4 Carbon全面超越Opus 5.5！首发Token半价",
+          "note": "",
+          "link": "https://www.qbitai.com/2026/10/506227.html"
+        },
+        {
+          "title": "刚刚，扩散模型杀进Agent主场！350亿参数",
+          "note": "",
+          "link": "https://www.qbitai.com/2026/10/505934.html"
+        },
+        {
+          "title": "物理学也要被AI攻陷了？5道20多年量子公开问题被突破",
+          "note": "",
+          "link": "https://www.qbitai.com/2026/10/506477.html"
+        }
+      ]
+    },
+    {
+      "source": "机器之心",
+      "articles": [
+        {
+          "title": "刚刚，谷歌发布最强模型Gemini 4 Carbon！荣登榜首",
+          "note": "",
+          "link": "https://www.jiqizhixin.com/articles/2026-10-29"
+        },
+        {
+          "title": "刚刚，机器人学习进入「全链路Scaling」时代",
+          "note": "",
+          "link": "https://www.jiqizhixin.com/articles/2026-10-29"
+        },
+        {
+          "title": "OpenAI发钱了？每月最高500美元API额度等你领",
+          "note": "",
+          "link": "https://www.jiqizhixin.com/articles/2026-10-29"
+        }
+      ]
+    },
+    {
+      "source": "新智元",
+      "articles": [
+        {
+          "title": "隔两周又甩王炸！谷歌Gemini 4 Carbon登顶",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "靠算力折扣刚赚9.7亿，Anthropic背着4300亿硬债抢跑IPO",
+          "note": "",
+          "link": "https://aiera.com.cn/asi-item.html?id=76459e7d"
+        },
+        {
+          "title": "不用打开ChatGPT，你的Dot支持发短信了",
+          "note": "",
+          "link": "https://aiera.com.cn/asi-item.html?id=e1b48110"
+        }
+      ]
+    },
+    {
+      "source": "36氪",
+      "articles": [
+        {
+          "title": "微软Azure首秀超预期，单季营收331.65亿美元同比增48%",
+          "note": "",
+          "link": "https://36kr.com/newsflashes"
+        },
+        {
+          "title": "英伟达遭调查：美司法部调查其129亿美元收购Hugging Face",
+          "note": "",
+          "link": "https://36kr.com/newsflashes"
+        },
+        {
+          "title": "36氪深度｜\"对不起，我们不投具身智能了\"",
+          "note": "",
+          "link": "https://36kr.com"
+        }
+      ]
+    }
+  ]
+}
