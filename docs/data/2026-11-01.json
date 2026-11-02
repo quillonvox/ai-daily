@@ -1,8 +1,89 @@
 {
   "date": "2026-11-01",
-  "title": "📰 AI科技日报（11月1日 · 覆盖10月31日）",
+  "title": "AI科技日报（11月1日 · 覆盖10月31日）",
   "summary": "苹果官宣Apple智能接入阿里千问、11月4日开测，DeepSeek千亿融资+V4.1-Flash登顶OpenRouter，AI数学成果井喷但学界开始划边界。",
   "status": "ok",
   "created_at": "2026-11-01T08:06:00+08:00",
-  "sections": []
+  "sections": [
+    {
+      "source": "量子位",
+      "articles": [
+        {
+          "title": "刚刚，DeepSeek重磅开源：Agent底座架构！",
+          "note": "",
+          "link": "https://www.qbitai.com/2026/10/506904.html"
+        },
+        {
+          "title": "刚刚，Claude宣布取消5小时限制！首批Ultra用户已「解封」",
+          "note": "",
+          "link": "https://www.qbitai.com/2026/10/506855.html"
+        },
+        {
+          "title": "世界模型首次指导设计芯片！超大核NPU 700TOPS，99%算力可用",
+          "note": "",
+          "link": "https://www.qbitai.com/2026/10/506866.html"
+        }
+      ]
+    },
+    {
+      "source": "机器之心",
+      "articles": [
+        {
+          "title": "即日起，ChatGPT Pro使用额度翻倍",
+          "note": "",
+          "link": "https://www.jiqizhixin.com/articles/2026-10-30-2"
+        },
+        {
+          "title": "机器人终于有了「任务进度记忆」！连续干活4小时，成功率超95%",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "不用反复测量，量子比特也能「自动纠错」：中科大跨过关键门槛",
+          "note": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "source": "新智元",
+      "articles": [
+        {
+          "title": "重磅！AI补全人类史上最大数学证明，数学家当场泪崩",
+          "note": "",
+          "link": "https://www.163.com/dy/article/LAHBP6LL0511ABV6.html）"
+        },
+        {
+          "title": "离开人类，AI能独自活下去么？从图灵测试到「鲁滨逊测试」",
+          "note": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "source": "36氪",
+      "articles": [
+        {
+          "title": "苹果和阿里巴巴宣布合作：千问集成至Apple智能",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "DeepSeek V4.1-Flash-1017单周调用量登顶OpenRouter全球榜首，环比暴增801%",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "大厂AI人才离职创业潮调查",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "寒武纪财报创新高但股价回撤超40%",
+          "note": "",
+          "link": ""
+        }
+      ]
+    }
+  ]
 }
