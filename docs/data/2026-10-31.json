@@ -4,5 +4,91 @@
   "summary": "AI科技日报（10月31日）",
   "status": "ok",
   "created_at": "2026-10-31T08:06:00+08:00",
-  "sections": []
+  "sections": [
+    {
+      "source": "量子位",
+      "articles": [
+        {
+          "title": "Claude新模型曝光：新Fable，新Opus…",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "RSI立大功！国产开源登顶全球第一，1.3B OXR重塑OCR",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "英伟达团队基于MiniMax H3开源视频增强方案",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "清华联合无问芯穹、智元提出具身智能规模化落地新路径",
+          "note": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "source": "新智元",
+      "articles": [
+        {
+          "title": "刚刚，Gemini 4 Carbon发布，谷歌重回世界第一！",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "AI王座，一夜两度易主！神秘模型Obsidian 3泄露",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "国产模型拿下三大榜单第一！年底全面开源",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "Codex 200刀额度砍半，ChatGPT入口大更新",
+          "note": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "source": "36氪",
+      "articles": [
+        {
+          "title": "DeepSeek搜索引擎API上线，百度为何被看衰",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "谁在押注Personal AI，谁又在害怕",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "Anthropic被曝灰测下调Claude订阅额度",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "月之暗面Kimi K3.1藏不住了",
+          "note": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "source": "机器之心",
+      "articles": [
+        {
+          "title": "今日官网抓取受限（站点防护页），未能获取昨日文章，渠道原因请见谅；其公众号内容可后续补看。",
+          "note": "",
+          "link": ""
+        }
+      ]
+    }
+  ]
 }
