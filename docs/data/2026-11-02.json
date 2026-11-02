@@ -1,0 +1,99 @@
+{
+  "date": "2026-11-02",
+  "title": "📰 AI科技日报（11月2日，覆盖11月1日内容）",
+  "summary": "DeepSeek开源下一代Agent底座架构持续刷屏，Anthropic与OpenAI围绕订阅额度、Agent权限密集出招，“AI烧钱叙事”开始被资本质疑。",
+  "status": "ok",
+  "created_at": "2026-11-02T08:06:00+08:00",
+  "sections": [
+    {
+      "source": "机器之心",
+      "articles": [
+        {
+          "title": "刚刚，DeepSeek公布下一代agent harness理念",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "史上首次！谷歌TPU在轨运行Gemma 4",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "刚刚，Claude每月200美元套餐取消5小时限制",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "英特尔显卡驱动被开源解锁，RTX 4090吞吐翻倍",
+          "note": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "source": "量子位",
+      "articles": [
+        {
+          "title": "DeepSeek重磅开源：Agent底座架构！",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "Claude紧急叫停！暗改Harness禁止逆向游戏",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "清华姚期智团队新作：代数世界模型，让AI像牛顿一样思考",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "三年前布局，今年爆火丨西湖大学成立新中心",
+          "note": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "source": "新智元",
+      "articles": [
+        {
+          "title": "DeepSeek刚发的下一代Agent，竟被这家硅谷团队提前半年实现了？",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "数亿美元做数学！奥特曼：OpenAI还有发现没公开",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "GPT-6「看不懂 3D」实锤！250道题只拿0.53分",
+          "note": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "source": "36氪",
+      "articles": [
+        {
+          "title": "AI“烧钱叙事”遇冷？OpenAI融资目标砍掉100亿！",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "2800万用户，养不活一个AI陪伴应用",
+          "note": "",
+          "link": ""
+        },
+        {
+          "title": "史上首次！谷歌TPU在轨运行Gemma 4",
+          "note": "",
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
