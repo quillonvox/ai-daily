@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-03",
+  "title": "AI科技日报（11月3日）",
+  "summary": "两大巨头新旗舰同日曝光：GPT-6.2 Astra灰度现身、Claude Mythos/Fable 5.5被扒出；DeepSeek Super-agent开源持续刷屏；乌镇峰会开幕。",
+  "status": "ok",
+  "created_at": "2026-11-03T08:10:00+08:00",
+  "sections": [
+    {
+      "source": "机器之心",
+      "articles": [
+        {"title": "刚刚，OpenAI新模型GPT-6.2 Astra曝光", "note": "Codex使用统计中模型标识变为gpt-6.2，被视作大范围灰度发布；爆料称性能全面超越Opus 5.5，或跳过6.1直接推出。", "link": "https://www.jiqizhixin.com/articles/2026-11-02"},
+        {"title": "大模型一定要一个字往外蹦吗？他们押注四年，给出了另一种答案", "note": "非自回归/并行生成路线深度报道，挑战token-by-token主流范式。", "link": "https://www.jiqizhixin.com/articles/2026-11-02"},
+        {"title": "LeCun证明了：规模从未起作用，下一token路线效率低", "note": "LeCun再度开炮，认为下一token预测路线在效率上存在根本缺陷。", "link": "https://www.jiqizhixin.com/articles/2026-11-02"},
+        {"title": "多项指标排名第一，全双工实时交互系统MOSS-Live发布", "note": "全双工实时语音交互新系统发布，多项基准第一。", "link": "https://www.jiqizhixin.com/articles/2026-11-02"}
+      ]
+    },
+    {
+      "source": "量子位",
+      "articles": [
+        {"title": "GPT-6.2 Astra开启灰测！Claude Mythos 5.5同日曝光", "note": "OpenAI与Anthropic新旗舰同日被扒：HuggingFace疑似泄露权重已被下载5000次。", "link": "https://www.qbitai.com/"},
+        {"title": "OpenAI重写大模型法则，第一条：忠于人类", "note": "OpenAI发布新版'机器人三定律'式模型行为准则，强调忠于人类。", "link": "https://www.qbitai.com/"},
+        {"title": "小米开源了个150元的AI小玩意，火到配件都涨价了", "note": "小米开源低价AI硬件，能指挥Agent干活还能控制智能家居，爆火。", "link": "https://www.qbitai.com/"},
+        {"title": "清华姚期智团队新作：代数世界模型，让AI像牛顿一样思考", "note": "姚期智团队提出代数世界模型，用数学结构改造AI的物理推理方式。", "link": "https://www.qbitai.com/"}
+      ]
+    },
+    {
+      "source": "新智元",
+      "articles": [
+        {"title": "OpenAI、Claude新旗舰同日曝光", "note": "GPT-6.2 Astra已吃下近两成真实流量；Claude Mythos 5.5为无护栏安全特调版，Fable 5.5支持百万上下文。", "link": "https://www.163.com/dy/article/LANA5K7B05568W0A.html"},
+        {"title": "Grok支持银联/支付宝，国内可订阅", "note": "xAI开放中国大陆等地区订阅支付，支付宝可订X Premium与Grok Plus，首月半价。", "link": "https://post.smzdm.com/p/ae65gk24"},
+        {"title": "乌镇峰会开幕：昇腾950超节点、AI智能体手机亮相", "note": "世界互联网大会11月2日启幕，华为、阿里、中兴等集中展出千余项AI成果。", "link": "https://feng.ifeng.com/c/8xNb3WMhEEG"}
+      ]
+    },
+    {
+      "source": "36氪",
+      "articles": [
+        {"title": "DeepSeek发布全新Agent架构", "note": "Super-agent双层架构+事件驱动，无需@即可识别bug、后台复现修复，开源原型已上线。", "link": "https://www.36kr.com/newsflashes/4050491685507971"},
+        {"title": "黑石：Anthropic上市后或无法获投资级评级", "note": "黑石提醒投资者Anthropic评级或处'BB'区间，630亿美元芯片融资成本面临上升压力。", "link": "https://pitchhub.36kr.com/financing-flash?channel=suqian"},
+        {"title": "AI应用与软件全线爆发，两市1.8万亿放量", "note": "AI大模型、AI漫剧概念领涨，国产AI漫剧单分钟成本降至350元。", "link": "https://jiemian.com/article/15283426.html"}
+      ]
+    }
+  ]
+}
