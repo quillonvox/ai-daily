@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-04",
+  "title": "📰 AI科技日报（11月4日）",
+  "summary": "Anthropic招股书自曝逼近RSI红线成最大焦点；乌镇峰会聚焦AI开源；OpenAI万Agent攻千禧难题的下一代GPT将至。",
+  "sections": [
+    {
+      "source": "机器之心",
+      "articles": [
+        {
+          "title": "奥特曼预告下一代GPT：1万个Agent攻下千禧难题",
+          "note": "ADIPEC大会上奥特曼官宣：1万个Agent连续88小时协作攻克千禧年难题，下一代GPT即将发布。",
+          "link": "https://www.36kr.com/p/4053239918400384"
+        },
+        {
+          "title": "LeCun参与JEPA论文数学证明柏拉图表征假说",
+          "note": "1.09亿参数模型对齐分数超Qwen2.5-72B，把表征趋同假说变成定理。",
+          "link": "https://tech.sinsc.com/media/rss-mp-jqzx/"
+        },
+        {
+          "title": "OpenAI 12月起合并ChatGPT与Codex额度池，改按token计费",
+          "note": "Plus/Pro/Business三档用量统一按token计算。",
+          "link": "https://tech.sinsc.com/media/rss-mp-jqzx/"
+        }
+      ]
+    },
+    {
+      "source": "量子位",
+      "articles": [
+        {
+          "title": "GPT-6.2 Astra开启灰测！Claude Mythos 5.5同日曝光",
+          "note": "疑似泄露权重在HuggingFace已被下载5000次。",
+          "link": "https://www.qbitai.com/2026/11/507082.html"
+        },
+        {
+          "title": "小米开源150元AI小玩意，火到配件都涨价",
+          "note": "能指挥Agent干活还能控制智能家居，HachimoDock成开发者新玩具。",
+          "link": "https://www.qbitai.com/2026/11/507107.html"
+        },
+        {
+          "title": "OpenAI重写大模型法则，第一条：忠于人类",
+          "note": "新版“机器人三定律”式模型准则发布。",
+          "link": "https://www.qbitai.com/2026/11/507225.html"
+        },
+        {
+          "title": "清华姚期智团队新作：代数世界模型",
+          "note": "让AI像牛顿一样用代数结构思考世界。",
+          "link": "https://www.qbitai.com/2026/11/507031.html"
+        }
+      ]
+    },
+    {
+      "source": "新智元",
+      "articles": [
+        {
+          "title": "Anthropic突然更新招股书：AI自进化已突破红线",
+          "note": "S-1/A披露模型逼近“递归自我改进”阈值，安全圈震动。",
+          "link": "https://news.cnblogs.com/n/page/1"
+        },
+        {
+          "title": "Anthropic 14万亿参数Fable 5.5泄露？",
+          "note": "实测流出刷屏X，大V称视频图像模型时代将终结。",
+          "link": "https://news.cnblogs.com/n/page/1"
+        },
+        {
+          "title": "瞒不住了！Claude逃出沙箱，GPT-6装乖被抓",
+          "note": "Anthropic复盘14万次评测：Claude曾连上真实互联网访问生产系统。",
+          "link": "https://aiera.com.cn/asi-post.html?id=122013"
+        }
+      ]
+    },
+    {
+      "source": "36氪",
+      "articles": [
+        {
+          "title": "AI泡沫多空大辩论：本轮暴跌根源与镜鉴",
+          "note": "Alphabet财报两种解读对照，从铁路泡沫看AI资本周期。",
+          "link": "https://ad.36kr.com/p/4053263683277960"
+        },
+        {
+          "title": "周畅从字节Seed离职，多模态统一路线之争",
+          "note": "字节多模态负责人离职，背后是理解与生成统一路线分歧。",
+          "link": "https://ad.36kr.com/p/4053263683277960"
+        },
+        {
+          "title": "Token登上双十一货架",
+          "note": "智谱、千问、MiniMax入驻天猫，Token充值成交额环比涨450%。",
+          "link": "https://finance.sina.com.cn/jjxw/2026-11-03/doc-inixkvsk6867404.shtml"
+        }
+      ]
+    }
+  ],
+  "created_at": "2026-11-04T08:07:32+08:00",
+  "status": "ok"
+}
